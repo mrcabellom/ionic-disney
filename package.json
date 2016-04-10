@@ -34,7 +34,7 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
     "cordova-plugin-camera",
-    "cordova-plugin-touch-id"
+    "cordova-plugin-touchid"
   ],
   "cordovaPlatforms": []
 }

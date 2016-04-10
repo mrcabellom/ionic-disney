@@ -1,9 +1,10 @@
-import {Page, Nav, Platform} from 'ionic-angular';
+import {Page, Nav, Platform, NavController} from 'ionic-angular';
 import {AttractionsService} from '../../shared/services/attractions-service';
 import {IdFilterPipe} from '../../shared/filters';
 import {Page3} from '../page3/page3';
-import {TouchID} from 'ionic-native';
+import {NgZone} from 'angular2/core';
 
+declare var touchid: any;
 
 @Page({
   templateUrl: 'build/pages/page1/page1.html',
@@ -12,10 +13,13 @@ import {TouchID} from 'ionic-native';
 })
 export class Page1 {
     attractions:any;
-    private instanceTouchId : TouchID;
-	constructor(private attractionsService : AttractionsService, private nav: Nav, private platform: Platform){
+	constructor(
+	private attractionsService : AttractionsService, 
+	private nav: Nav, 
+	private platform: Platform,
+	private navController: NavController,
+	private ngZone: NgZone){
 		this.getAttractions();
-		this.instanceTouchId = new TouchID();
 	}
 
 	getAttractions(refresher?:any){
@@ -34,18 +38,19 @@ export class Page1 {
 
 	getGraph(attractionId: string){
 		this.platform.ready().then(() => {
-			this.instanceTouchId.isAvailable().then(() =>{
-				TouchID.verifyFingerprint('Verificar Huella').then(() =>{
-					 this.nav.push(Page3, {
-	      				attractionId: attractionId
-	    			});
-				},(error) => {
-					console.log(error);
-				});
-
-			},(error) =>{
-				console.log(error);
-			});
-		});
+			touchid.checkSupport(() => {
+	            touchid.authenticate((result) => {
+	                this.ngZone.run(() => {
+	                    this.nav.push(Page3,{
+	                    	attractionId: attractionId
+	                    });
+	                });
+	            }, (error) => {
+	               
+	            }, "Please Authenticate");
+	        }, (error) => {
+	           console.log("No hay soporte");
+	         });
+        });
 	}
 }
