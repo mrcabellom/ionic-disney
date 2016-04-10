@@ -1,0 +1,12 @@
+<ion-navbar *navbar>
+  <ion-title>CHART TEST</ion-title>
+</ion-navbar>
+<ion-content>
+    <base-chart class="chart"
+           [data]="barChartData"
+           [labels]="barChartLabels"
+           [options]="barChartOptions"
+           [series]="barChartSeries"
+           [legend]="barChartLegend"
+           [chartType]="lineChartType"></base-chart>
+</ion-content>

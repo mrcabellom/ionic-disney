@@ -1,0 +1,11 @@
+<ion-navbar *navbar>
+  <ion-title>
+    Photos
+  </ion-title>
+</ion-navbar>
+<ion-content class="picture-page">
+<button (click)="takepic()">Click</button>
+  <ion-card>
+      <img [hidden]="!image" [src]="image">
+  </ion-card>
+</ion-content>

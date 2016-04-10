@@ -1,0 +1,41 @@
+<ion-navbar *navbar>
+  <ion-title>Attractions</ion-title>
+</ion-navbar>
+<ion-content class="has-header components-demo cards-bg page1">
+ <ion-refresher (refresh)="getAttractions($event)">
+  <ion-refresher-content refreshingIcon="spinner" pullingtext="Pull to refresh..." refreshingtext="Refreshing..."></ion-refresher-content>
+ </ion-refresher>
+  <ion-card *ngFor="#attraction of attractions">
+      <img src="build/images/attraction.png"/>
+      <ion-card-content>
+        <h2 class="card-title">
+         {{attraction.name}}
+        </h2>
+        <p>
+          Disneyland park attraction description
+        </p>
+      </ion-card-content>
+      <ion-row no-padding>
+        <ion-col padding>
+         <ion-icon name='clock-outline'></ion-icon>
+          {{attraction.getWaitTime()}}
+        </ion-col>
+        <ion-col padding>
+          <ion-badge [ngClass]="attraction.hasFastPass() ? 'badge-secondary' : 'badge-danger'">Fast Pass</ion-badge>
+        </ion-col>
+        <ion-col padding>
+          <ion-badge [ngClass]="{
+            'badge-secondary': attraction.isOperating(),
+            'badg-light': attraction.isDown(),
+            'badge-danger': attraction.isClosed()}"
+           >{{attraction.getStatus()}}</ion-badge>
+        </ion-col>
+         <ion-col no-padding>
+          <button small light round (click)="getGraph(attraction.getId())">
+             <ion-icon name="barcode"></ion-icon>
+              View Graph {{attraction.getId()}}
+          </button> 
+        </ion-col>       
+      </ion-row>
+    </ion-card>
+</ion-content>
