@@ -1,4 +1,4 @@
-import {Page, Nav, Platform, NavController} from 'ionic-angular';
+import {Page, Nav, Platform, NavController, Alert} from 'ionic-angular';
 import {AttractionsService} from '../../shared/services/attractions-service';
 import {IdFilterPipe} from '../../shared/filters';
 import {Page3} from '../page3/page3';
@@ -35,22 +35,31 @@ export class Page1 {
 		    }
 		);
 	}
-
+	
 	getGraph(attractionId: string){
-		this.platform.ready().then(() => {
-			touchid.checkSupport(() => {
-	            touchid.authenticate((result) => {
-	                this.ngZone.run(() => {
+	    this.platform.ready().then(() => {
+            touchid.checkSupport(() => {
+                touchid.authenticate((result) => {
+                    this.ngZone.run(() => {
 	                    this.nav.push(Page3,{
 	                    	attractionId: attractionId
 	                    });
 	                });
-	            }, (error) => {
-	               
-	            }, "Please Authenticate");
-	        }, (error) => {
-	           console.log("No hay soporte");
-	         });
+                }, (error) => {
+                    this.navController.present(Alert.create({
+                        title: "Attention!",
+                        subTitle: error,
+                        buttons: ["Close"]
+                    }));
+                }, "Please Authenticate");
+            }, (error) => {
+                this.navController.present(Alert.create({
+                    title: "Attention!",
+                    subTitle: "Touch ID is not supported",
+                    buttons: ["Close"]
+                }));
+            });
         });
-	}
+    }
+
 }
