@@ -12,6 +12,7 @@ export class CanvasComponent {
 	ngAfterViewInit() {
 	    let canvas = this.myCanvas.nativeElement;
 	    this.context = canvas.getContext("2d");
+	    this.tick();
 	}
 
     private tick() {
