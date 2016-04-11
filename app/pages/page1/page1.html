@@ -14,6 +14,14 @@
         <p>
           Disneyland park attraction description
         </p>
+        <ion-row no-padding>
+          <ion-col no-padding>
+            <button small light round (click)="getGraph(attraction.getId())">
+                <ion-icon name="barcode"></ion-icon>
+                View Graph
+            </button> 
+        </ion-col>      
+        </ion-row>    
       </ion-card-content>
       <ion-row no-padding>
         <ion-col padding>
@@ -30,12 +38,6 @@
             'badge-danger': attraction.isClosed()}"
            >{{attraction.getStatus()}}</ion-badge>
         </ion-col>
-         <ion-col no-padding>
-          <button small light round (click)="getGraph(attraction.getId())">
-             <ion-icon name="barcode"></ion-icon>
-              Graph
-          </button> 
-        </ion-col>       
       </ion-row>
     </ion-card>
 </ion-content>
