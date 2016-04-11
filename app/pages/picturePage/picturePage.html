@@ -1,10 +1,10 @@
-<ion-navbar *navbar>
+<ion-navbar primary *navbar>
   <ion-title>
     Photos
   </ion-title>
 </ion-navbar>
 <ion-content class="picture-page">
-<button (click)="takepic()">Click</button>
+<button (click)="takepic()">Take a picture!</button>
   <ion-card>
       <img [hidden]="!image" [src]="image">
   </ion-card>

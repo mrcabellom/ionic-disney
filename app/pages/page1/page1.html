@@ -1,4 +1,4 @@
-<ion-navbar *navbar>
+<ion-navbar primary *navbar>
   <ion-title>Attractions</ion-title>
 </ion-navbar>
 <ion-content class="has-header components-demo cards-bg page1">
@@ -6,7 +6,7 @@
   <ion-refresher-content refreshingIcon="spinner" pullingtext="Pull to refresh..." refreshingtext="Refreshing..."></ion-refresher-content>
  </ion-refresher>
   <ion-card *ngFor="#attraction of attractions">
-      <img src="build/images/attraction.png"/>
+      <img [src]="'build/images/'+ attraction.getId() + '.png'"/>
       <ion-card-content>
         <h2 class="card-title">
          {{attraction.name}}

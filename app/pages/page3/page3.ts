@@ -17,8 +17,8 @@ export class Page3 {
   private attractionId: string;
   private attractionsAggregate: Array<any>;
   private barChartSeries = ['Wait time average'];
-  private barChartLabels = [];
-  private barChartData = [[]];
+  private barChartLabels = ['No Time'];
+  private barChartData = [[0]];
   private barChartLegend:boolean = true;
   private lineChartType:string = 'Line';
   private barChartOptions = {
@@ -29,7 +29,7 @@ export class Page3 {
 
   constructor(private navParams: NavParams, private attractionsService:AttractionsService) {
     this.attractionId = navParams.get('attractionId');
-       
+        
   }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class Page3 {
            this.setGraphData(data);
         },
         err => {
-            console.log('There was an error retreveing attractions aggregate');
+            console.log('There was an error retrieving attractions aggregate');
         }
     );
   }
@@ -49,13 +49,16 @@ export class Page3 {
   setGraphData(dataAttractions){
     var labels = [];
     var data = [[]];
-    for (var i=0, li = dataAttractions.length; i<li; i++){
+    for (var i=0, li=dataAttractions.length; i<li; i++){
          var dataAttraction = dataAttractions[i];
          data[0].push(dataAttraction.waitTimeAvg);
          labels.push(dataAttraction.date);
     }
-    this.barChartData = data;
-    this.barChartLabels = labels;
+    
+    if(labels.length > 0){
+        this.barChartData = data;
+        this.barChartLabels = labels;
+    }
   }
 
 }

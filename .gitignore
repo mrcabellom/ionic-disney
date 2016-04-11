@@ -4,7 +4,8 @@
 node_modules/
 www/build/
 platforms/
-plugins/
+/plugins
 *.swp
 .DS_Store
 Thumbs.db
+.io-config.json

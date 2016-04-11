@@ -23,6 +23,7 @@ export class Page1 {
 	}
 
 	getAttractions(refresher?:any){
+        
 		this.attractionsService.getAttractions().subscribe(
 		    data => {
 		        this.attractions = data;
@@ -31,7 +32,7 @@ export class Page1 {
 		        }
 		    },
 		    err => {
-		        console.log('There was an error retreveing attractions');
+		        console.log('There was an error retrieving attractions');
 		    }
 		);
 	}
@@ -59,7 +60,6 @@ export class Page1 {
                     buttons: ["Close"]
                 }));
             });
-        });
+        });    
     }
-
 }
