@@ -3,9 +3,9 @@ import {NgZone, Inject} from 'angular2/core';
 
 
 @Page({
-  templateUrl: 'build/pages/picturePage/picturePage.html'
+  templateUrl: 'build/pages/camera/camera.html'
 })
-export class PicturePage {
+export class CameraPage {
     image: any;
     constructor(private _ngZone: NgZone, private platform: Platform) {
 

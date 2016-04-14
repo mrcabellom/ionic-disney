@@ -8,11 +8,11 @@ import {AppSettings} from '../../shared/settings';
 
 
 @Page({
-  templateUrl: 'build/pages/page3/page3.html',
+  templateUrl: 'build/pages/graph/graph.html',
   directives: [CHART_DIRECTIVES, NgClass, CORE_DIRECTIVES, FORM_DIRECTIVES],
   providers: [AttractionsService]
 })
-export class Page3 {
+export class GraphPage {
   
   private attractionId: string;
   private attractionsAggregate: Array<any>;

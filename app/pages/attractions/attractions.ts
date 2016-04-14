@@ -1,17 +1,17 @@
 import {Page, Nav, Platform, NavController, Alert} from 'ionic-angular';
 import {AttractionsService} from '../../shared/services/attractions-service';
 import {IdFilterPipe} from '../../shared/filters';
-import {Page3} from '../page3/page3';
+import {GraphPage} from '../graph/graph';
 import {NgZone} from 'angular2/core';
 
 declare var touchid: any;
 
 @Page({
-  templateUrl: 'build/pages/page1/page1.html',
+  templateUrl: 'build/pages/attractions/attractions.html',
   providers: [AttractionsService],
   pipes : [IdFilterPipe]
 })
-export class Page1 {
+export class AttractionsPage {
     attractions:any;
 	constructor(
 	private attractionsService : AttractionsService, 
@@ -42,7 +42,7 @@ export class Page1 {
             touchid.checkSupport(() => {
                 touchid.authenticate((result) => {
                     this.ngZone.run(() => {
-	                    this.nav.push(Page3,{
+	                    this.nav.push(GraphPage,{
 	                    	attractionId: attractionId
 	                    });
 	                });
@@ -60,6 +60,6 @@ export class Page1 {
                     buttons: ["Close"]
                 }));
             });
-        });    
+        });  
     }
 }
